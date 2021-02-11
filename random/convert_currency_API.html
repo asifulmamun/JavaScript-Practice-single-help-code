@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Currency API</title>
+</head>
+<body>
+
+    <form action="">
+        <select name="from" id="from">
+            
+        </select>
+        <select name="to" id="to"></select>
+    </form>
+
+
+
+    <div id="result">result</div>
+
+
+
+<!-- jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- custom js/jquery -->
+<script>
+    // var currency_api = 'http://data.fixer.io/api/latest?access_key=8397780e9f43fb21178ef6f74fff4675';
+
+    $.ajax({
+        url: 'http://data.fixer.io/api/latest?access_key=8397780e9f43fb21178ef6f74fff4675',
+        dataType: 'json',
+        method: 'GET',
+        success:function(data){
+            
+            // var keyData = data.rates;
+
+            // Object.keys(keyData).forEach(function(key) {
+            //     document.getElementById('from').innerHTML = '<option id="fromValue" value="">' + key + '</option>';
+            // })
+            
+            
+            // var re = jQuery.parseJSON(keyData);
+
+            var bdtRateFromUSD = data.rates.BDT/data.rates.USD;
+            console.log('USD 1 = BDT:', bdtRateFromUSD);
+
+            console.log('Base', data.base, 'Rate:', data.rates.EUR);
+            console.log('BDT:', data.rates.BDT);
+            console.log('USD:', data.rates.USD);
+
+
+        },
+        error:function(){
+            // error message
+        }
+    });/* ajax */
+    
+</script>
+</body>
+</html>
