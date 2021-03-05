@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Convert Currency API</title>
 </head>
+
 <body>
 
-    <form action="">
-        <select name="from" id="from">
-            
+    <form id="currencyConverter" action="">
+        <select name="fromCur" id="from">
+            <option id="fromValue" value=""></option>
         </select>
-        <select name="to" id="to"></select>
+        <select name="toCur" id="to"></select>
+
     </form>
 
 
@@ -20,42 +23,57 @@
 
 
 
-<!-- jquery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<!-- custom js/jquery -->
-<script>
-    // var currency_api = 'http://data.fixer.io/api/latest?access_key=8397780e9f43fb21178ef6f74fff4675';
+    <!-- custom js/jquery -->
+    <script>
+        // var currency_api = 'http://data.fixer.io/api/latest?access_key=8397780e9f43fb21178ef6f74fff4675';
 
-    $.ajax({
-        url: 'http://data.fixer.io/api/latest?access_key=8397780e9f43fb21178ef6f74fff4675',
-        dataType: 'json',
-        method: 'GET',
-        success:function(data){
-            
-            // var keyData = data.rates;
+        $.ajax({
+            // url: 'http://data.fixer.io/api/latest?access_key=8397780e9f43fb21178ef6f74fff4675',
+            // local data
+            url: 'http://localhost/data.json',
+            dataType: 'json',
+            method: 'GET',
+            success: function (data) {
 
-            // Object.keys(keyData).forEach(function(key) {
-            //     document.getElementById('from').innerHTML = '<option id="fromValue" value="">' + key + '</option>';
-            // })
-            
-            
-            // var re = jQuery.parseJSON(keyData);
+                var keyData = data.rates;
+                Object.keys(keyData).forEach(function(key) {
+                    // document.getElementById('from').innerHTML = '<option id="fromValue" value="">' + key + '</option>';
 
-            var bdtRateFromUSD = data.rates.BDT/data.rates.USD;
-            console.log('USD 1 = BDT:', bdtRateFromUSD);
+                    document.forms.currencyConverter.value = "img";
+                })
+                // var re = jQuery.parseJSON(keyData);
 
-            console.log('Base', data.base, 'Rate:', data.rates.EUR);
-            console.log('BDT:', data.rates.BDT);
-            console.log('USD:', data.rates.USD);
+                // Rate Showing
+                var bdtRateFromUSD = data.rates.BDT / data.rates.USD;
+                console.log('USD 1 = BDT:', bdtRateFromUSD);
+
+                console.log('Base', data.base, 'Rate:', data.rates.EUR);
+                console.log('BDT:', data.rates.BDT);
+                console.log('USD:', data.rates.USD);
 
 
-        },
-        error:function(){
-            // error message
-        }
-    });/* ajax */
-    
-</script>
+            },
+            error: function () {
+                // error message
+            }
+        });/* ajax */
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
 </body>
+
 </html>
