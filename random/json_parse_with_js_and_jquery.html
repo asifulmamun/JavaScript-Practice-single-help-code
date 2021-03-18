@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Currency API</title>
+
+    <link rel="shortcut icon" href="#">
+
+</head>
+
+<body>
+
+
+
+
+    
+
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- custom js/jquery -->
+    <script>
+
+        function readTextFile(file, callback) {
+            var rawFile = new XMLHttpRequest();
+            rawFile.overrideMimeType("application/json");
+            rawFile.open("GET", file, true);
+            rawFile.onreadystatechange = function () {
+                if (rawFile.readyState === 4 && rawFile.status == "200") {
+                    callback(rawFile.responseText);
+                }
+            }
+            rawFile.send(null);
+        }
+
+        //usage:
+        readTextFile("http://localhost/data/json/febbms/main_menu.json", function (text) {
+
+
+            var datas = JSON.parse(text);
+            console.log(datas[0]["skills"]);
+            console.log(datas[0]["skills"].length);
+
+
+
+
+            var table = $("<table border='1'/>");
+
+            var thead = $("<thead/>")
+                .appendTo(table);
+
+            $("<tr/>")
+                .append("<th>Name</th>")
+                .append("<th>Email</th>")
+                .append("<th>Skills</th>")
+                .append("<th>Time</th>")
+                .appendTo(thead);
+
+            var tbody = $("<tbody/>")
+                .appendTo(table);
+
+                console.log(datas.length);
+
+            for (var i = 0; i < datas.length; i++) {
+                // var citydata = datas[i];
+
+                $("<tr/>")
+                    .append("<td>" + datas[i]["skills"][0] + "</td>")
+                    .append("<td>" + datas[i]["skills"][1] + "</td>")
+                    .append("<td>" + datas[i]["skills"][2] + "</td>")
+                    .append("<td>" + datas[i]["skills"][3] + "</td>")
+                    .appendTo(tbody);
+            }
+
+
+            //
+            // FOR TESTING
+            //
+            $("body").append(table);
+
+
+        });
+
+
+
+
+    </script>
+</body>
+
+</html>
